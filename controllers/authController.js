@@ -5,7 +5,7 @@ import { generateToken } from "../utils/jwtUtils.js";
 
 // Register function
 export const register = async (req, res) => {
-  const { username, password, usrpackage,billstatus } = req.body;
+  const { username, password, usrpackage,billstatus,packagePrice } = req.body;
  // console.log(username,password,usrpackage,billstatus)
   try {
     // Check if the username already exists
@@ -20,8 +20,8 @@ export const register = async (req, res) => {
       username,
       password: hashedPassword,
       usrpackage: usrpackage,
-      billStatus:billstatus
-
+      billStatus:billstatus,
+      packagePrice:packagePrice
     }); 
 
     // Send success response

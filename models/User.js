@@ -19,6 +19,10 @@ const UserSchema = new mongoose.Schema({
     type: Boolean,
     required:true,
   }, 
+  packagePrice:{
+    type:Number,
+    required:true,
+  }
 });
 
 const User = mongoose.model("User", UserSchema);
