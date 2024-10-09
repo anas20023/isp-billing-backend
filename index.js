@@ -11,7 +11,9 @@ app.use(bodypaser.json());
 connectDB();
 
 // config body-parser
-app.use(cors());
+app.use(cors({
+  origin: ["http://localhost:5173"],
+})); 
 
 app.use("/api/auth", authRoutes);
 
