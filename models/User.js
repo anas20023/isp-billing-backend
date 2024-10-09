@@ -11,20 +11,25 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  usrpackage: {
+  packageName: {
+    // Renamed from usrpackage to packageName
     type: String,
-    required:true,
+    required: true,
+  },
+  packageSpeed: {
+    // Added to match the frontend data structure
+    type: String,
+    required: true,
   },
   billStatus: {
     type: Boolean,
-    required:true,
-  }, 
-  packagePrice:{
-    type:Number,
-    required:true,
-  }
+    required: true,
+  },
+  packagePrice: {
+    type: String, // Kept as string to match the frontend requirement
+    required: true,
+  },
 });
 
 const User = mongoose.model("User", UserSchema);
 export default User;
-  

@@ -7,6 +7,7 @@ import cors from "cors";
 import bodypaser from "body-parser";
 dotenv.config();
 const app = express();
+app.use(express.json());
 app.use(bodypaser.json());
 connectDB();
 
