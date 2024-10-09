@@ -11,11 +11,13 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  package: {
+  usrpackage: {
     type: String,
+    required:true,
   },
   billStatus: {
     type: Boolean,
+    required:true,
   }, 
 });
 
