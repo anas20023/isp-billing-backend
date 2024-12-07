@@ -1,4 +1,5 @@
 import User from "../models/User.js";
+import Problem from "../models/problems.js";
 import bcrypt from "bcryptjs";
 import { generateToken } from "../utils/jwtUtils.js";
 
@@ -14,7 +15,7 @@ export const register = async (req, res) => {
       packagePrice,
     } = req.body;
 
-   // console.log('Request Body:', req.body); // Log the full request body
+    // console.log('Request Body:', req.body); // Log the full request body
 
     // Check if the username already exists
     const existingUser = await User.findOne({ username });
@@ -41,8 +42,6 @@ export const register = async (req, res) => {
     res.status(500).json({ message: "Error creating user" });
   }
 };
-
-
 // Login function
 export const login = async (req, res) => {
   const { username, password } = req.body;
@@ -99,9 +98,72 @@ export const dltuser = async (req, res) => {
     res.status(500).json({ message: "Server error" });
   }
 };
+export const addProblem = async (req, res) => {
+  try {
+    const { name, topic, difficulty, link } = req.body;
 
+    if (!name || !topic || !difficulty || !link) {
+      return res.status(400).json({ message: "All fields are required!" });
+    }
+
+    const newProblem = new Problem({
+      name,
+      topic,
+      difficulty,
+      link,
+    });
+
+    await newProblem.save();
+
+    return res
+      .status(201)
+      .json({ message: "Problem added successfully!", problem: newProblem });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: "Server error", error });
+  }
+};
+export const updateProblem = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { name, topic, difficulty, link } = req.body;
+
+    const updatedProblem = await Problem.findByIdAndUpdate(
+      id,
+      {
+        name,
+        topic,
+        difficulty,
+        link,
+      },
+      { new: true }
+    );
+
+    if (!updatedProblem) {
+      return res.status(404).json({ message: "Problem not found" });
+    }
+
+    return res
+      .status(200)
+      .json({
+        message: "Problem updated successfully",
+        problem: updatedProblem,
+      });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: "Server error", error });
+  }
+};
+export const getAllProblems = async (req, res) => {
+  try {
+    const problems = await Problem.find(); // Fetch all problems from the database
+    return res.status(200).json({ problems });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: "Server error", error });
+  }
+};
 // Default route for testing
 export const def = async (req, res) => {
   res.json({ message: "default route" });
 };
- 
