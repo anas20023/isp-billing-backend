@@ -14,9 +14,8 @@ connectDB();
 // Allow all origins in CORS
 app.use(
   cors({
-    origin: "*", // Allow all origins
-    methods: "GET,POST,PUT,DELETE", // Allow these HTTP methods
-    allowedHeaders: "Content-Type,Authorization", // Allow specific headers if needed
+    origin: "*", 
+    methods: "GET,POST,PUT,DELETE",
   })
 );
 
