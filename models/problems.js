@@ -20,7 +20,6 @@ const problemSchema = new mongoose.Schema(
       match: /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/i, 
     },
   },
-  { timestamps: true }
 ); 
 
 const Problem = mongoose.model("Problem", problemSchema);
