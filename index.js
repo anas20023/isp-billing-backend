@@ -13,7 +13,7 @@ connectDB();
 
 // config body-parser
 app.use(cors({
-  origin: ["http://localhost:5173","https://digi-isp.vercel.app/"],
+  origin: ["http://localhost:5173","https://digi-isp.vercel.app/","https://list.anasib.tech/","http://localhost:5174"],
 })); 
 
 app.use("/api/auth", authRoutes);
