@@ -123,6 +123,7 @@ export const addProblem = async (req, res) => {
     return res.status(500).json({ message: "Server error", error });
   }
 };
+
 export const updateProblem = async (req, res) => {
   try {
     const { id } = req.params;
@@ -143,17 +144,16 @@ export const updateProblem = async (req, res) => {
       return res.status(404).json({ message: "Problem not found" });
     }
 
-    return res
-      .status(200)
-      .json({
-        message: "Problem updated successfully",
-        problem: updatedProblem,
-      });
+    return res.status(200).json({
+      message: "Problem updated successfully",
+      problem: updatedProblem,
+    });
   } catch (error) {
     console.error(error);
     return res.status(500).json({ message: "Server error", error });
   }
 };
+
 export const getAllProblems = async (req, res) => {
   try {
     const problems = await Problem.find(); // Fetch all problems from the database
