@@ -1,26 +1,29 @@
 import mongoose from "mongoose";
-// Define the schema for a Problem
+
+
 const problemSchema = new mongoose.Schema(
   {
     name: {
       type: String,
-      required: true, // Ensures the problem has a name
+      required: true,
+      unique: true, e
     },
     topic: {
       type: String,
-      required: true, 
+      required: true,
     },
     difficulty: {
       type: Number,
-      required: true, 
+      required: true,
     },
     link: {
       type: String,
-      required: true, 
-      match: /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/i, 
+      required: true,
+      match: /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/i,
+      unique: true, 
     },
   },
-); 
+);
 
 const Problem = mongoose.model("Problem", problemSchema);
 export default Problem;
